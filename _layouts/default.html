@@ -3,13 +3,22 @@
   <head>
     <meta charset="utf-8">
     <title>{{ page.title }} - {{ page.sub_title }}</title>
+    <link rel="stylesheet" href="{{ '/assets/css/default.css' }}" />
   </head>
 
   <body>
-    <h1><a href="/">{{ page.header }}<a></h1>
-    {% include navigation.html %}
-    <hr>
-    {{ content }}
+    <header id="page-header">
+      <h1 id="page-title"><a href="/">{{ page.header }}<a></h1>
+      {% include navigation.html %}
+    </header>
+
+    <div id="page-wrapper">
+
+      <div id="content">
+        {{ content }}
+      </div>
+
+    </div>
   </body>
 
 </html>
