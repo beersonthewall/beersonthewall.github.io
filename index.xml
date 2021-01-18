@@ -2,21 +2,21 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Beersonthewall</title>
-    <link>http://www.beersonthewall.com/</link>
+    <link>https://www.beersonthewall.com/</link>
     <description>Recent content on Beersonthewall</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Sat, 31 Oct 2020 17:44:09 -0500</lastBuildDate>
     
-	<atom:link href="http://www.beersonthewall.com/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://www.beersonthewall.com/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>About</title>
-      <link>http://www.beersonthewall.com/about/</link>
+      <link>https://www.beersonthewall.com/about/</link>
       <pubDate>Sat, 31 Oct 2020 17:44:09 -0500</pubDate>
       
-      <guid>http://www.beersonthewall.com/about/</guid>
+      <guid>https://www.beersonthewall.com/about/</guid>
       <description>Skills
  Kubernetes Java, Go, Python, Rust, Bash AWS Docker Kafka Ansible  Projects
  Frisbee or Not - Simple neural network made with fastai. ellers-rs - First real rust project. An implementation of Eller&amp;rsquo;s mazer generation algorithm. Brick - Brief attempt at writing low level code. Boots and prints to the screen via the VGA buffer. Named after what it would do to real hardware.  </description>
@@ -24,46 +24,46 @@
     
     <item>
       <title>All the Light We Cannot See</title>
-      <link>http://www.beersonthewall.com/readinglist/all-the-light-we-cannot-see/</link>
+      <link>https://www.beersonthewall.com/readinglist/all-the-light-we-cannot-see/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>http://www.beersonthewall.com/readinglist/all-the-light-we-cannot-see/</guid>
+      <guid>https://www.beersonthewall.com/readinglist/all-the-light-we-cannot-see/</guid>
       <description>Rating: Sad / 10</description>
     </item>
     
     <item>
       <title>Basic Economics</title>
-      <link>http://www.beersonthewall.com/readinglist/basic-economics/</link>
+      <link>https://www.beersonthewall.com/readinglist/basic-economics/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>http://www.beersonthewall.com/readinglist/basic-economics/</guid>
+      <guid>https://www.beersonthewall.com/readinglist/basic-economics/</guid>
       <description>Rating: Changed my views / 10</description>
     </item>
     
     <item>
       <title>Database Internals</title>
-      <link>http://www.beersonthewall.com/readinglist/database-internals/</link>
+      <link>https://www.beersonthewall.com/readinglist/database-internals/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>http://www.beersonthewall.com/readinglist/database-internals/</guid>
+      <guid>https://www.beersonthewall.com/readinglist/database-internals/</guid>
       <description>Rating: Databases are hard / 10</description>
     </item>
     
     <item>
       <title>Duke Sucks</title>
-      <link>http://www.beersonthewall.com/readinglist/duke-sucks/</link>
+      <link>https://www.beersonthewall.com/readinglist/duke-sucks/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>http://www.beersonthewall.com/readinglist/duke-sucks/</guid>
+      <guid>https://www.beersonthewall.com/readinglist/duke-sucks/</guid>
       <description>Rating: Fun / 10</description>
     </item>
     
     <item>
       <title>Haunted</title>
-      <link>http://www.beersonthewall.com/readinglist/haunted/</link>
+      <link>https://www.beersonthewall.com/readinglist/haunted/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>http://www.beersonthewall.com/readinglist/haunted/</guid>
+      <guid>https://www.beersonthewall.com/readinglist/haunted/</guid>
       <description>Rating: 7/10
 Very disturbing story.
 What&amp;rsquo;s going on up in Chuck&amp;rsquo;s head might need to stay there. Would reccomend.</description>
@@ -71,101 +71,101 @@ What&amp;rsquo;s going on up in Chuck&amp;rsquo;s head might need to stay there.
     
     <item>
       <title>High Performance Browser Networking</title>
-      <link>http://www.beersonthewall.com/readinglist/high-performance-browser-networking/</link>
+      <link>https://www.beersonthewall.com/readinglist/high-performance-browser-networking/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>http://www.beersonthewall.com/readinglist/high-performance-browser-networking/</guid>
+      <guid>https://www.beersonthewall.com/readinglist/high-performance-browser-networking/</guid>
       <description>Rating: networking is hard/10
 Link</description>
     </item>
     
     <item>
       <title>Into the Wild</title>
-      <link>http://www.beersonthewall.com/readinglist/into-the-wild/</link>
+      <link>https://www.beersonthewall.com/readinglist/into-the-wild/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>http://www.beersonthewall.com/readinglist/into-the-wild/</guid>
+      <guid>https://www.beersonthewall.com/readinglist/into-the-wild/</guid>
       <description>Rating: 6/10</description>
     </item>
     
     <item>
       <title>Legacy of Ashes</title>
-      <link>http://www.beersonthewall.com/readinglist/legacy-of-ashes/</link>
+      <link>https://www.beersonthewall.com/readinglist/legacy-of-ashes/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>http://www.beersonthewall.com/readinglist/legacy-of-ashes/</guid>
+      <guid>https://www.beersonthewall.com/readinglist/legacy-of-ashes/</guid>
       <description>Rating: 5/10</description>
     </item>
     
     <item>
       <title>My Blues Note</title>
-      <link>http://www.beersonthewall.com/readinglist/bernie-federko/</link>
+      <link>https://www.beersonthewall.com/readinglist/bernie-federko/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>http://www.beersonthewall.com/readinglist/bernie-federko/</guid>
+      <guid>https://www.beersonthewall.com/readinglist/bernie-federko/</guid>
       <description>Rating: LETS GO BLUES / 10</description>
     </item>
     
     <item>
       <title>Roadside Picnic</title>
-      <link>http://www.beersonthewall.com/readinglist/roadside-picnic/</link>
+      <link>https://www.beersonthewall.com/readinglist/roadside-picnic/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>http://www.beersonthewall.com/readinglist/roadside-picnic/</guid>
+      <guid>https://www.beersonthewall.com/readinglist/roadside-picnic/</guid>
       <description>Rating: 7/10</description>
     </item>
     
     <item>
       <title>The Circle</title>
-      <link>http://www.beersonthewall.com/readinglist/the-circle/</link>
+      <link>https://www.beersonthewall.com/readinglist/the-circle/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>http://www.beersonthewall.com/readinglist/the-circle/</guid>
+      <guid>https://www.beersonthewall.com/readinglist/the-circle/</guid>
       <description>Rating: square / 10</description>
     </item>
     
     <item>
       <title>The Dictator&#39;s Handbook</title>
-      <link>http://www.beersonthewall.com/readinglist/dictators-handbook/</link>
+      <link>https://www.beersonthewall.com/readinglist/dictators-handbook/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>http://www.beersonthewall.com/readinglist/dictators-handbook/</guid>
+      <guid>https://www.beersonthewall.com/readinglist/dictators-handbook/</guid>
       <description>Rating: 8/10</description>
     </item>
     
     <item>
       <title>The Unicorn Project</title>
-      <link>http://www.beersonthewall.com/readinglist/unicorn-project/</link>
+      <link>https://www.beersonthewall.com/readinglist/unicorn-project/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>http://www.beersonthewall.com/readinglist/unicorn-project/</guid>
+      <guid>https://www.beersonthewall.com/readinglist/unicorn-project/</guid>
       <description>Rating: blergh / 10</description>
     </item>
     
     <item>
       <title>The Wendigo</title>
-      <link>http://www.beersonthewall.com/readinglist/wendigo/</link>
+      <link>https://www.beersonthewall.com/readinglist/wendigo/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>http://www.beersonthewall.com/readinglist/wendigo/</guid>
+      <guid>https://www.beersonthewall.com/readinglist/wendigo/</guid>
       <description>Rating: 9/10</description>
     </item>
     
     <item>
       <title>The Willows</title>
-      <link>http://www.beersonthewall.com/readinglist/willows/</link>
+      <link>https://www.beersonthewall.com/readinglist/willows/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>http://www.beersonthewall.com/readinglist/willows/</guid>
+      <guid>https://www.beersonthewall.com/readinglist/willows/</guid>
       <description>Rating: 9/10</description>
     </item>
     
     <item>
       <title>Thinking Fast and Slow</title>
-      <link>http://www.beersonthewall.com/readinglist/thinking-fast-and-slow/</link>
+      <link>https://www.beersonthewall.com/readinglist/thinking-fast-and-slow/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>http://www.beersonthewall.com/readinglist/thinking-fast-and-slow/</guid>
+      <guid>https://www.beersonthewall.com/readinglist/thinking-fast-and-slow/</guid>
       <description>Rating: Yellow Flannel / 10</description>
     </item>
     
