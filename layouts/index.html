@@ -1,0 +1,14 @@
+{{ define "main" }}
+<section>
+  <p>Hello, World!</p>
+{{ $articles := (where .Site.RegularPages "Type" "blog") | first 4 }}
+{{ range $articles }}
+  {{ partial "article-summary.html" . }}
+  {{ end }}
+  <div id="blog-links">
+    <a href="/blog/">All Posts</a>
+    <a href="/tags/">Tags</a>
+  </div>
+</section>
+{{ end }}
+

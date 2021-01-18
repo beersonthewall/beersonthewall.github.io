@@ -1,0 +1,16 @@
+{{ define "main" }}
+
+<section class="years">
+  <h2>Reading List</h3>
+{{ range .Pages.GroupByParam "year_read" "desc" }}
+<h3>{{ .Key }}</h3>
+<ul class="reading-list">
+  {{ range .Pages }}
+  <li>
+    <a href="{{ .Permalink }}"><h4>{{ .Title }} by {{ .Params.Author }}</h4></a>
+  </li>
+  {{ end }}
+</ul>
+{{ end }}
+</section>
+{{ end }}

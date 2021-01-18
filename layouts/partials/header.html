@@ -1,0 +1,26 @@
+{{ $header_data := .Site.Data.base.header }}
+<header id="header">
+  <nav>
+    <ul id="main">
+      <li>
+        <a href="{{ .Site.BaseURL }}" >
+          <h1>Beersonthewall</h1>
+        </a>
+      </li>
+    </ul>
+
+    <ul id="info">
+      {{ range $key, $value := $header_data }}
+      <li>
+        {{ if eq $key "email" }}
+          <a href="{{ $value.url }}">
+        {{ else }}
+          <a href="{{ $value.url | relLangURL }}">
+        {{ end }}
+          <img src="{{ $value.icon }}" alt="{{ $value.alt }}">
+        </a>
+      </li>
+      {{ end }}
+    </ul>
+  </nav>
+</header>

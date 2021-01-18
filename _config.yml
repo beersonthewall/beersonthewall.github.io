@@ -1,9 +1,0 @@
-defaults:
-  -
-    scope:
-      path: ""
-    values:
-      layout: "default"
-      title: "Beersonthewall"
-      header: "Beersonthewall"
-      github_url: "https://www.github.com/beersonthewall"

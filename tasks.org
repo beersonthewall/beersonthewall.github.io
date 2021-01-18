@@ -1,0 +1,18 @@
+* Task Tracker
+** DONE homepage
+** DONE posts layout
+** DONE info page
+** DONE rss feed
+** DONE projects page?
+   just added to the info page
+** booklist
+*** DONE icon 
+*** DONE list page
+*** DONE single page
+** DONE partial for <head>
+** DONE BUG: Img urls only work on homepage, break anywhere else.
+** DONE link booklist
+** DONE link info page
+** DONE tags page
+** DONE link full blog list page
+** TODO actual articles

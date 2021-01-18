@@ -1,0 +1,22 @@
+# Base <header> element
+header:
+  info:
+    icon: "/images/info.svg"
+    alt: "info"
+    url: "about/"
+  book:
+    icon: "/images/book.svg"
+    alt: "reading list"
+    url: "readinglist/"
+  github:
+    icon: "/images/github.svg"
+    alt: "Github icon link"
+    url: "https://github.com/beersonthewall"
+  email:
+    icon: "/images/email.svg"
+    alt: "email"
+    url: "mailto: matthew@beersonthewall.com"
+  rss:
+    icon: "/images/rss.svg"
+    alt: "rss feed"
+    url: "/blog/index.xml"
