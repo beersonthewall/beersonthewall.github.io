@@ -1,7 +1,0 @@
-<head>
-  <meta charset="utf-8">
-  <title>{{ .Site.Title }}</title>
-
-  {{ $styles := resources.Get "css/style.css" | toCSS }}
-  <link rel="stylesheet" href="{{ $styles.Permalink }}">
-</head>
