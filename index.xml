@@ -17,9 +17,7 @@
       <pubDate>Sat, 31 Oct 2020 17:44:09 -0500</pubDate>
       
       <guid>https://www.beersonthewall.com/about/</guid>
-      <description>Skills
- Kubernetes Java, Go, Python, Rust, Bash AWS Docker Kafka Ansible  Projects
- Frisbee or Not - Simple neural network made with fastai. ellers-rs - First real rust project. An implementation of Eller&amp;rsquo;s mazer generation algorithm. Brick - Brief attempt at writing low level code. Boots and prints to the screen via the VGA buffer. Named after what it would do to real hardware.  </description>
+      <description>Software Engineer Projects  Frisbee or Not - Simple neural network made with fastai. ellers-rs - First real rust project. An implementation of Eller&amp;rsquo;s mazer generation algorithm. Brick - Brief attempt at writing low level code. Boots and prints to the screen via the VGA buffer. Named after what it would do to real hardware.  Keywords  Kubernetes Java, Python, Rust AWS Docker Ansible MongoDB Jenkins Terraform Kafka Nginx Gradle Linux  </description>
     </item>
     
     <item>
