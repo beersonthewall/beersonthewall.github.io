@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Tags on Beersonthewall</title>
+    <link>https://www.beersonthewall.com/tags/</link>
+    <description>Recent content in Tags on Beersonthewall</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Thu, 11 Nov 2021 09:30:39 -0600</lastBuildDate>
+    
+	<atom:link href="https://www.beersonthewall.com/tags/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>documentation</title>
+      <link>https://www.beersonthewall.com/tags/documentation/</link>
+      <pubDate>Thu, 11 Nov 2021 09:30:39 -0600</pubDate>
+      
+      <guid>https://www.beersonthewall.com/tags/documentation/</guid>
+      <description></description>
+    </item>
+    
+  </channel>
+</rss>
