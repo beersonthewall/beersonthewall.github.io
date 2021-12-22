@@ -12,6 +12,17 @@
     
     
     <item>
+      <title>Weird Rust Lifetime Error</title>
+      <link>https://www.beersonthewall.com/blog/weird-rust-lifetime-error/</link>
+      <pubDate>Wed, 22 Dec 2021 11:09:20 -0600</pubDate>
+      
+      <guid>https://www.beersonthewall.com/blog/weird-rust-lifetime-error/</guid>
+      <description>While working on a side project I encounterd some surprising (to me) behavior when I tried to change a function from using a named return type to Self.
+Here&amp;rsquo;s a boiled-down example of the code I started with:
+struct A&amp;lt;&amp;#39;a&amp;gt; { value: &amp;amp;&amp;#39;a str, } impl A&amp;lt;&amp;#39;_&amp;gt; { fn new(src: &amp;amp;str) -&amp;gt; A { A { value: src, } } fn value(&amp;amp;self) -&amp;gt; &amp;amp;str { self.value } } fn main() { let value = &amp;#34;Hello, World!</description>
+    </item>
+    
+    <item>
       <title>Reading Documentation</title>
       <link>https://www.beersonthewall.com/blog/reading-docs/</link>
       <pubDate>Thu, 11 Nov 2021 09:30:39 -0600</pubDate>

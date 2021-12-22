@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+  <meta charset="utf-8">
+  <title>Beersonthewall</title>
+
+  
+  <link rel="stylesheet" href="https://www.beersonthewall.com/css/style.css">
+</head>
+
+
+  <body>
+
+    
+<header id="header">
+  <nav>
+    <ul id="main">
+      <li>
+        <a href="https://www.beersonthewall.com/" >
+          <h1>Beersonthewall</h1>
+        </a>
+      </li>
+    </ul>
+
+    <ul id="info">
+      
+      <li>
+        
+          <a href="/readinglist/">
+        
+          <img src="/images/book.svg" alt="reading list">
+        </a>
+      </li>
+      
+      <li>
+        
+          <a href="mailto:%20matthew@beersonthewall.com">
+        
+          <img src="/images/email.svg" alt="email">
+        </a>
+      </li>
+      
+      <li>
+        
+          <a href="https://github.com/beersonthewall">
+        
+          <img src="/images/github.svg" alt="Github icon link">
+        </a>
+      </li>
+      
+      <li>
+        
+          <a href="/about/">
+        
+          <img src="/images/info.svg" alt="info">
+        </a>
+      </li>
+      
+      <li>
+        
+          <a href="/blog/index.xml">
+        
+          <img src="/images/rss.svg" alt="rss feed">
+        </a>
+      </li>
+      
+    </ul>
+  </nav>
+</header>
+
+
+    <div id="content">
+      
+<article class="blog-post">
+
+  <h1 class="blog-title">
+    Weird Rust Lifetime Error
+  </h1>
+
+  <div class="blog-date">
+    December 22, 2021
+  </div>
+
+  <p class="blog-content">
+    <p>While working on a side project I encounterd some surprising (to me) behavior when I tried to change a function from using a named return type to <code>Self</code>.</p>
+<p>Here&rsquo;s a boiled-down example of the code I started with:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-rust" data-lang="rust"><span style="color:#66d9ef">struct</span> <span style="color:#a6e22e">A</span><span style="color:#f92672">&lt;</span><span style="color:#a6e22e">&#39;a</span><span style="color:#f92672">&gt;</span> {
+    value: <span style="color:#66d9ef">&amp;</span><span style="color:#a6e22e">&#39;a</span> <span style="color:#66d9ef">str</span>,
+}
+
+<span style="color:#66d9ef">impl</span> A<span style="color:#f92672">&lt;</span><span style="color:#a6e22e">&#39;_</span><span style="color:#f92672">&gt;</span> {
+    <span style="color:#66d9ef">fn</span> <span style="color:#a6e22e">new</span>(src: <span style="color:#66d9ef">&amp;</span><span style="color:#66d9ef">str</span>) -&gt; <span style="color:#a6e22e">A</span> {
+        A {
+            value: <span style="color:#a6e22e">src</span>,
+        }
+    }
+
+    <span style="color:#66d9ef">fn</span> <span style="color:#a6e22e">value</span>(<span style="color:#f92672">&amp;</span>self) -&gt; <span style="color:#66d9ef">&amp;</span><span style="color:#66d9ef">str</span> {
+        self.value
+    }
+}
+
+<span style="color:#66d9ef">fn</span> <span style="color:#a6e22e">main</span>() {
+    <span style="color:#66d9ef">let</span> value <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;Hello, World!&#34;</span>;
+    <span style="color:#66d9ef">let</span> a <span style="color:#f92672">=</span> A::new(value);
+    println<span style="color:#f92672">!</span>(<span style="color:#e6db74">&#34;{}&#34;</span>, a.value);
+}
+</code></pre></div><p>Then I applied the following change:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-diff" data-lang="diff">struct A&lt;&#39;a&gt; {
+    value: &amp;&#39;a str,
+}
+
+impl A&lt;&#39;_&gt; {
+<span style="color:#f92672">-    fn new(src: &amp;str) -&gt; A {
+</span><span style="color:#f92672">-        A {
+</span><span style="color:#f92672"></span><span style="color:#a6e22e">+    fn new(src: &amp;str) -&gt; Self {
+</span><span style="color:#a6e22e">+        Self {
+</span><span style="color:#a6e22e"></span>            value: src,
+        }
+    }
+
+    fn value(&amp;self) -&gt; &amp;str {
+        self.value
+    }
+}
+
+fn main() {
+    let value = &#34;Hello, World!&#34;;
+    let a = A::new(value);
+    println!(&#34;{}&#34;, a.value);
+}
+</code></pre></div><p>Which gave me:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">$ cargo run
+   Compiling self-lifetimes v0.1.0 <span style="color:#f92672">(</span>&lt;omitted&gt;/code/self-lifetimes<span style="color:#f92672">)</span>
+error<span style="color:#f92672">[</span>E0312<span style="color:#f92672">]</span>: lifetime of reference outlives lifetime of borrowed content...
+ --&gt; src/main.rs:8:20
+  |
+<span style="color:#ae81ff">8</span> |             value: src,
+  |                    ^^^
+  |
+note: ...the reference is valid <span style="color:#66d9ef">for</span> the lifetime <span style="color:#e6db74">`</span><span style="color:#e6db74">&#39;_` as defined here...
+</span><span style="color:#e6db74"> --&gt; src/main.rs:5:8
+</span><span style="color:#e6db74">  |
+</span><span style="color:#e6db74">5 | impl A&lt;&#39;</span>_&gt; <span style="color:#f92672">{</span>
+  |        ^^
+note: ...but the borrowed content is only valid <span style="color:#66d9ef">for</span> the anonymous lifetime defined here
+ --&gt; src/main.rs:6:17
+  |
+<span style="color:#ae81ff">6</span> |     fn new<span style="color:#f92672">(</span>src: &amp;str<span style="color:#f92672">)</span> -&gt; Self <span style="color:#f92672">{</span>
+  |                 ^^^^
+
+For more information about this error, try <span style="color:#e6db74">`</span>rustc --explain E0312<span style="color:#e6db74">`</span>.
+error: could not compile <span style="color:#e6db74">`</span>self-lifetimes<span style="color:#e6db74">`</span> due to previous error
+
+</code></pre></div><p>This is fairily interesting, as I would have expected <code>Self</code> and <code>A</code> to work the same. I guess when changing to use <code>Self</code> rust isn&rsquo;t able to discover the lifetime annotation on <code>A</code> which requires that <code>value</code> must live at least as long as the struct itself?</p>
+<p>This seems to be the case, since if I use a named lifetime instead of the anonymous lifetime on the <code>impl</code> everything works as expected:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-diff" data-lang="diff">struct A&lt;&#39;a&gt; {
+    value: &amp;&#39;a str,
+}
+
+<span style="color:#f92672">-impl A&lt;&#39;_&gt; {
+</span><span style="color:#f92672">-    fn new(src: &amp;str) -&gt; A {
+</span><span style="color:#f92672">-        A {
+</span><span style="color:#f92672"></span><span style="color:#a6e22e">+impl&lt;&#39;a&gt; A&lt;&#39;a&gt; {
+</span><span style="color:#a6e22e">+    fn new(src: &amp;&#39;a str) -&gt; Self {
+</span><span style="color:#a6e22e">+        Self {
+</span><span style="color:#a6e22e"></span>            value: src,
+        }
+    }
+
+    fn value(&amp;self) -&gt; &amp;str {
+        self.value
+    }
+}
+
+fn main() {
+    let value = &#34;Hello, World!&#34;;
+    let a = A::new(value);
+    println!(&#34;{}&#34;, a.value);
+}
+</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">cargo run
+   Compiling self-lifetimes v0.1.0 <span style="color:#f92672">(</span>&lt;omitted&gt;/code/self-lifetimes<span style="color:#f92672">)</span>
+warning: associated <span style="color:#66d9ef">function</span> is never used: <span style="color:#e6db74">`</span>value<span style="color:#e6db74">`</span>
+  --&gt; src/main.rs:12:8
+   |
+<span style="color:#ae81ff">12</span> |     fn value<span style="color:#f92672">(</span>&amp;self<span style="color:#f92672">)</span> -&gt; &amp;str <span style="color:#f92672">{</span>
+   |        ^^^^^
+   |
+   <span style="color:#f92672">=</span> note: <span style="color:#e6db74">`</span><span style="color:#75715e">#[warn(dead_code)]` on by default</span>
+
+warning: <span style="color:#e6db74">`</span>self-lifetimes<span style="color:#e6db74">`</span> <span style="color:#f92672">(</span>bin <span style="color:#e6db74">&#34;self-lifetimes&#34;</span><span style="color:#f92672">)</span> generated <span style="color:#ae81ff">1</span> warning
+    Finished dev <span style="color:#f92672">[</span>unoptimized + debuginfo<span style="color:#f92672">]</span> target<span style="color:#f92672">(</span>s<span style="color:#f92672">)</span> in 0.21s
+     Running <span style="color:#e6db74">`</span>target/debug/self-lifetimes<span style="color:#e6db74">`</span>
+Hello, World!
+</code></pre></div><p>I&rsquo;m guessing this is likely just a gap in my understanding of rust, but it&rsquo;s interesting nonetheless.</p>
+
+  </p>
+
+  <footer>
+    
+ 
+
+
+    <br>
+  </footer>
+</article>
+
+
+    </div>
+
+  </body>
+
+</html>
+
