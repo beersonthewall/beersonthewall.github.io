@@ -103,7 +103,7 @@
 <span style="color:#66d9ef">fn</span> <span style="color:#a6e22e">main</span>() {
     <span style="color:#66d9ef">let</span> value <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;Hello, World!&#34;</span>;
     <span style="color:#66d9ef">let</span> a <span style="color:#f92672">=</span> A::new(value);
-    println<span style="color:#f92672">!</span>(<span style="color:#e6db74">&#34;{}&#34;</span>, a.value);
+    println<span style="color:#f92672">!</span>(<span style="color:#e6db74">&#34;{}&#34;</span>, a.value());
 }
 </code></pre></div><p>Then I applied the following change:</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-diff" data-lang="diff">struct A&lt;&#39;a&gt; {
@@ -127,7 +127,7 @@ impl A&lt;&#39;_&gt; {
 fn main() {
     let value = &#34;Hello, World!&#34;;
     let a = A::new(value);
-    println!(&#34;{}&#34;, a.value);
+    println!(&#34;{}&#34;, a.value());
 }
 </code></pre></div><p>Which gave me:</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">$ cargo run
@@ -176,21 +176,12 @@ error: could not compile <span style="color:#e6db74">`</span>self-lifetimes<span
 fn main() {
     let value = &#34;Hello, World!&#34;;
     let a = A::new(value);
-    println!(&#34;{}&#34;, a.value);
+    println!(&#34;{}&#34;, a.value());
 }
 </code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">cargo run
    Compiling self-lifetimes v0.1.0 <span style="color:#f92672">(</span>&lt;omitted&gt;/code/self-lifetimes<span style="color:#f92672">)</span>
-warning: associated <span style="color:#66d9ef">function</span> is never used: <span style="color:#e6db74">`</span>value<span style="color:#e6db74">`</span>
-  --&gt; src/main.rs:12:8
-   |
-<span style="color:#ae81ff">12</span> |     fn value<span style="color:#f92672">(</span>&amp;self<span style="color:#f92672">)</span> -&gt; &amp;str <span style="color:#f92672">{</span>
-   |        ^^^^^
-   |
-   <span style="color:#f92672">=</span> note: <span style="color:#e6db74">`</span><span style="color:#75715e">#[warn(dead_code)]` on by default</span>
-
-warning: <span style="color:#e6db74">`</span>self-lifetimes<span style="color:#e6db74">`</span> <span style="color:#f92672">(</span>bin <span style="color:#e6db74">&#34;self-lifetimes&#34;</span><span style="color:#f92672">)</span> generated <span style="color:#ae81ff">1</span> warning
     Finished dev <span style="color:#f92672">[</span>unoptimized + debuginfo<span style="color:#f92672">]</span> target<span style="color:#f92672">(</span>s<span style="color:#f92672">)</span> in 0.21s
-     Running <span style="color:#e6db74">`</span>target/debug/self-lifetimes<span style="color:#e6db74">`</span>
+     Running <span style="color:#e6db74">`</span>/home/matthew/code/self-lifetimes/target/debug/self-lifetimes<span style="color:#e6db74">`</span>
 Hello, World!
 </code></pre></div><p>I&rsquo;m guessing this is likely just a gap in my understanding of rust, but it&rsquo;s interesting nonetheless.</p>
 
