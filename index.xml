@@ -38,7 +38,8 @@ How do you read documentation? If you&amp;rsquo;re like most programmers I&amp;r
       <pubDate>Sat, 31 Oct 2020 17:44:09 -0500</pubDate>
       
       <guid>https://www.beersonthewall.com/about/</guid>
-      <description>Software Engineer Projects  Frisbee or Not - Simple neural network made with fastai. ellers-rs - First real rust project. An implementation of Eller&amp;rsquo;s mazer generation algorithm. Brick - Brief attempt at writing low level code. Boots and prints to the screen via the VGA buffer. Named after what it would do to real hardware.  Keywords  Kubernetes Java, Python, Rust AWS Docker Ansible MongoDB Jenkins Terraform Kafka Nginx Gradle Linux  </description>
+      <description>About I&amp;rsquo;m a software engineer based in Kansas City.
+Not Day Job In my free time I enjoy doing deep dives into how specific technologies work. In the past I&amp;rsquo;ve worked through both Into to Database Systems and Advanced Database Systems because I wanted to understand how databases were implemented. My college database course left a lot to be desired since it mostly focused on table design and normal forms. I&amp;rsquo;ve also played around with machine learning (thanks to FastAI&amp;rsquo;s courses) and Frisbee or Not is the culmination of those efforts.</description>
     </item>
     
     <item>
