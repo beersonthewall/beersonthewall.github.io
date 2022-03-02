@@ -6,10 +6,22 @@
     <description>Recent content in Articles on Beersonthewall</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 22 Dec 2021 11:09:20 -0600</lastBuildDate>
+    <lastBuildDate>Mon, 28 Feb 2022 07:34:11 -0600</lastBuildDate>
     
 	<atom:link href="https://www.beersonthewall.com/blog/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Kernel Debug Log 1</title>
+      <link>https://www.beersonthewall.com/blog/kernel-debug-log/</link>
+      <pubDate>Mon, 28 Feb 2022 07:34:11 -0600</pubDate>
+      
+      <guid>https://www.beersonthewall.com/blog/kernel-debug-log/</guid>
+      <description>Debug logs:
+What follows is more-or-less stream of conciousness notes written while I was debugging my kernel code. I&amp;rsquo;ve found that writing my thought process down makes it easier to logically work through a problem. Additionally it&amp;rsquo;s nice to document how I&amp;rsquo;ve solved problems.
+The problem statement:
+I&amp;rsquo;m currently trying to implement recursive page tables in my x86_64 kernel project. I&amp;rsquo;ve just gotten the map() function for the page mapper to stop faulting when mapping a test page, now we&amp;rsquo;re trying to make use of the newly mapped page:</description>
+    </item>
     
     <item>
       <title>Weird Rust Lifetime Error</title>
