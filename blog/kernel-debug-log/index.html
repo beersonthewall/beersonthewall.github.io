@@ -175,7 +175,7 @@ so it&rsquo;s not really pointing where we think it is.</p>
 <p>Second: that&rsquo;s probably way larger than the amount of &lsquo;physical&rsquo; memory qemu uses by default
 which is 128 MiB. Ooops.</p>
 <p>Let&rsquo;s change that to a more reasonable value: 0x4e20000 that fixes both problems.</p>
-<p>Re-running gives a new error:</p>
+<p>Re-running shows we can access our newly mapped page, but also gives an error during unmap():</p>
 <pre><code>[kernel] Hello world! :)
 [kernel] Multiboot flags 4026597203
 [kernel::memory::frame_alloc] start: 0x2710000
