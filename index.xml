@@ -12,6 +12,16 @@
     
     
     <item>
+      <title>Resources for Learning OS Dev</title>
+      <link>https://www.beersonthewall.com/blog/learning-os-dev-resources/</link>
+      <pubDate>Fri, 06 May 2022 18:27:24 -0500</pubDate>
+      
+      <guid>https://www.beersonthewall.com/blog/learning-os-dev-resources/</guid>
+      <description>Recently I&amp;rsquo;ve been learning os dev and there&amp;rsquo;s a surprising amount of freely available resources for getting started with little to no direct experience (with OS dev, you need to know how to program already). Below is a list of the resources I&amp;rsquo;ve found inredibly helpful.
+ OS dev wiki Writing an OS in Rust (and the first edition) Redox OS Serenity OS Operating Systems: Three Easy Pieces  </description>
+    </item>
+    
+    <item>
       <title>Kernel Debug Log 1</title>
       <link>https://www.beersonthewall.com/blog/kernel-debug-log/</link>
       <pubDate>Mon, 28 Feb 2022 07:34:11 -0600</pubDate>
