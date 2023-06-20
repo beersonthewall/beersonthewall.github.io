@@ -4,8 +4,60 @@
     <link href="https://www.beersonthewall.com/blog/atom.xml" rel="self" type="application/atom+xml"/>
     <link href="https://www.beersonthewall.com/blog/"/>
     <generator uri="https://www.getzola.org/">Zola</generator>
-    <updated>2022-05-06T00:00:00+00:00</updated>
+    <updated>2023-06-20T00:00:00+00:00</updated>
     <id>https://www.beersonthewall.com/blog/atom.xml</id>
+    <entry xml:lang="en">
+        <title>Hello Site!</title>
+        <published>2023-06-20T00:00:00+00:00</published>
+        <updated>2023-06-20T00:00:00+00:00</updated>
+        <author>
+          <name>Unknown</name>
+        </author>
+        <link rel="alternate" href="https://www.beersonthewall.com/blog/hello-world/" type="text/html"/>
+        <id>https://www.beersonthewall.com/blog/hello-world/</id>
+        
+        <content type="html">&lt;p&gt;Today I published my re-designed personal site (shoutout to the &lt;a href=&quot;https:&#x2F;&#x2F;www.getzola.org&#x2F;&quot;&gt;zola&lt;&#x2F;a&gt; static site generator) and wanted to share a few things I&#x27;ve
+learned in the process. These might be pretty obivous to any experienced front end 
+engineers, but since I don&#x27;t spend all day working on front end projects they&#x27;re new
+to me!&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;media-queries&quot;&gt;Media Queries&lt;&#x2F;h2&gt;
+&lt;p&gt;It&#x27;s important that a website looks good on many different devices. Media 
+queries are a way to apply CSS styles depending on a device&#x27;s characteristics.
+For example here&#x27;s the (abbreviated) media query I use to adjust for smaller screens:&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;css&quot; style=&quot;background-color:#212733;color:#ccc9c2;&quot; class=&quot;language-css &quot;&gt;&lt;code class=&quot;language-css&quot; data-lang=&quot;css&quot;&gt;&lt;span style=&quot;color:#ffa759;&quot;&gt;@media &lt;&#x2F;span&gt;&lt;span style=&quot;color:#f29e74;&quot;&gt;only &lt;&#x2F;span&gt;&lt;span style=&quot;font-style:italic;color:#f29e74;&quot;&gt;screen &lt;&#x2F;span&gt;&lt;span style=&quot;color:#f29e74;&quot;&gt;and &lt;&#x2F;span&gt;&lt;span&gt;(&lt;&#x2F;span&gt;&lt;span style=&quot;color:#5ccfe6;&quot;&gt;max-width&lt;&#x2F;span&gt;&lt;span style=&quot;color:#ccc9c2cc;&quot;&gt;: &lt;&#x2F;span&gt;&lt;span style=&quot;color:#ffcc66;&quot;&gt;600&lt;&#x2F;span&gt;&lt;span style=&quot;color:#ffa759;&quot;&gt;px&lt;&#x2F;span&gt;&lt;span&gt;) {
+&lt;&#x2F;span&gt;&lt;span&gt;
+&lt;&#x2F;span&gt;&lt;span&gt;	&lt;&#x2F;span&gt;&lt;span style=&quot;font-style:italic;color:#5c6773;&quot;&gt;&#x2F;* ---- snip ---- *&#x2F;
+&lt;&#x2F;span&gt;&lt;span&gt;
+&lt;&#x2F;span&gt;&lt;span&gt;	&lt;&#x2F;span&gt;&lt;span style=&quot;font-style:italic;color:#5c6773;&quot;&gt;&#x2F;* Displaying a full description clutters smaller screens *&#x2F;
+&lt;&#x2F;span&gt;&lt;span&gt;	&lt;&#x2F;span&gt;&lt;span style=&quot;color:#ffd580;&quot;&gt;.postDescription &lt;&#x2F;span&gt;&lt;span&gt;{
+&lt;&#x2F;span&gt;&lt;span&gt;		&lt;&#x2F;span&gt;&lt;span style=&quot;color:#5ccfe6;&quot;&gt;display&lt;&#x2F;span&gt;&lt;span style=&quot;color:#ccc9c2cc;&quot;&gt;: &lt;&#x2F;span&gt;&lt;span style=&quot;font-style:italic;color:#f29e74;&quot;&gt;none&lt;&#x2F;span&gt;&lt;span style=&quot;color:#ccc9c2cc;&quot;&gt;;
+&lt;&#x2F;span&gt;&lt;span&gt;	}
+&lt;&#x2F;span&gt;&lt;span&gt;}
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;This media query will only apply &lt;code&gt;display: none&lt;&#x2F;code&gt; to the &lt;code&gt;.postDescription&lt;&#x2F;code&gt; class
+when the max-width is less than or equal to 600px. For a full explanation of media queries 
+see &lt;a href=&quot;https:&#x2F;&#x2F;developer.mozilla.org&#x2F;en-US&#x2F;docs&#x2F;Web&#x2F;CSS&#x2F;CSS_media_queries&#x2F;Using_media_queries&quot;&gt;mdn&lt;&#x2F;a&gt;.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;responsive-design-mode&quot;&gt;Responsive Design Mode&lt;&#x2F;h2&gt;
+&lt;p&gt;Testing how your site looks on different screen sizes is important. Both Firefox 
+and Chrome have developer tools that allow you to emulate viewing the site on 
+different devices. In Firefox you can use the shortcut &lt;code&gt;Ctrl-Shift-M&lt;&#x2F;code&gt; and an 
+adjustable size display will show up. You can alter the size, rotation, and even 
+network bandwith see how your site works (or doesn&#x27;t)!&lt;&#x2F;p&gt;
+&lt;img class=&quot;markdownimg&quot; src=&quot;responsive_design_mode.png&quot; alt=&quot;Screenshot of Firefox&#x27;s responsive design mode&quot;&gt;
+&lt;h2 id=&quot;overflow-attribute&quot;&gt;Overflow Attribute&lt;&#x2F;h2&gt;
+&lt;p&gt;The last thing I learned about was the &lt;code&gt;overflow&lt;&#x2F;code&gt; attribute. I was having 
+trouble with my code block running off the nicely styled background color:&lt;&#x2F;p&gt;
+&lt;img class=&quot;markdownimg&quot; src=&quot;overflow.png&quot; alt=&quot;Screenshot of code going past the background color.&quot;&gt;
+&lt;p&gt;The &lt;a href=&quot;https:&#x2F;&#x2F;developer.mozilla.org&#x2F;en-US&#x2F;docs&#x2F;Web&#x2F;CSS&#x2F;overflow&quot;&gt;overflow attribute&lt;&#x2F;a&gt; 
+lets you define the behavior when content does not fit into the parent box. In my
+case I wanted it to set a scroll window so I used: &lt;code&gt;overflow: scroll&lt;&#x2F;code&gt;.&lt;&#x2F;p&gt;
+&lt;img class=&quot;markdownimg&quot; src=&quot;noverflow.png&quot; alt=&quot;Screenshot of code going past the background color.&quot;&gt;
+&lt;h2 id=&quot;wrap-up&quot;&gt;Wrap Up&lt;&#x2F;h2&gt;
+&lt;p&gt;Coming from the world of back end dev, there&#x27;s always a ton to learn when I jump
+into more front-end learning projects but for now that&#x27;s a wrap!&lt;&#x2F;p&gt;
+</content>
+        
+    </entry>
     <entry xml:lang="en">
         <title>Resources for Learning OS Dev</title>
         <published>2022-05-06T00:00:00+00:00</published>

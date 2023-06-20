@@ -17,6 +17,7 @@ h1, h2, h3, h4, h5, h6, ol, ul, li {
 body {
     line-height: 1;
     background-color: var(--clr-neutral);
+    padding-bottom: 2%;
 }
 ol, ul {
 	list-style: none;
@@ -82,7 +83,7 @@ h1 {
     color: var(--clr-primary);
 }
 
-h3 {
+h2 {
     font-weight: bold;
     margin: 0.25rem;
     font-size: var(--fs-300);
@@ -129,6 +130,11 @@ h3 {
 }
 
 /* end classes for templates/section.html */
+
+.markdownimg {
+    width: 100%;
+    height: auto;
+}
 
 /* For smaller screens */
 @media only screen and (max-width: 600px) {
