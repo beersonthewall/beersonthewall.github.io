@@ -1,0 +1,149 @@
+/* CSS Reset */
+
+/* http://meyerweb.com/eric/tools/css/reset/ 
+   v2.0 | 20110126
+   License: none (public domain)
+*/
+
+h1, h2, h3, h4, h5, h6, ol, ul, li {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+body {
+    line-height: 1;
+    background-color: var(--clr-neutral);
+}
+ol, ul {
+	list-style: none;
+}
+
+a {
+    color: var(--clr-accent);
+}
+
+/* css */
+
+/* Necessary to make code blocks code resonable on mobile */
+pre {
+    overflow: scroll;
+    padding: .5rem;
+}
+
+code {
+    overflow: scroll;
+}
+
+:root {
+    --clr-neutral: hsla(37,80%,98%,1);
+    --clr-primary: hsla(295,23%,42%,1);
+    --clr-secondary: hsla(250,5%,25%,1);
+    --clr-accent: hsla(228,52%,64%,1);
+
+    --fs-200: 0.875rem;
+    --fs-300: 1rem;
+    --fs-500: 1.5rem;
+}
+
+.navigation {
+    margin: 2.5%;
+    display: flex;
+    flex-direction: row;
+    jusitfy-content: flex-start;
+}
+
+.navlink {
+    color: var(--clr-primary);
+}
+
+.icon {
+    margin-right: 1em;
+}
+
+.content {
+    margin: 2.5%;
+    padding-top: 1rem;
+    color: var(--clr-secondary);
+    font-size: var(--fs-300);
+}
+
+.content section {
+    padding: 1rem 1rem 1rem 0rem;
+}
+
+h1 {
+    font-weight: bold;
+    margin: 0.25rem 0;
+    font-size: var(--fs-500);
+    color: var(--clr-primary);
+}
+
+h3 {
+    font-weight: bold;
+    margin: 0.25rem;
+    font-size: var(--fs-300);
+    color: var(--clr-primary);
+}
+
+.container {
+    width: 66%;
+    margin: 0 auto;
+    max-width: 800px;
+}
+
+.indexParagraph {
+    margin: 1em;
+}
+
+.indexLink {
+    text-decoration: underline;
+    color: var(--clr-accent);
+}
+
+/* classes for templates/section.html */
+.postListItem {
+    margin: 1rem;
+}
+
+.dateField {
+    display: inline;
+    color: var(--clr-accent);
+}
+
+.titleField {
+    display: inline;
+    color: var(--clr-accent);
+}
+
+.postDescription {
+    margin: 1rem;
+    font-size: var(--fs-200);
+}
+
+.postLink {
+    font-size: var(--fs-300);
+}
+
+/* end classes for templates/section.html */
+
+/* For smaller screens */
+@media only screen and (max-width: 600px) {
+  .navigation {
+      flex-direction: column;
+  }
+
+  .icon {
+      max-width: 10%;
+      max-height: 10%;
+      margin-bottom: 1%;
+  }
+
+  /* Displaying a full description clutters smaller screens */
+  .postDescription {
+      display: none;
+  }
+}

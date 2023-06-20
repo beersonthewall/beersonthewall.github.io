@@ -1,0 +1,183 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
+    <title> - Blog</title>
+    <link href="https://www.beersonthewall.com/blog/atom.xml" rel="self" type="application/atom+xml"/>
+    <link href="https://www.beersonthewall.com/blog/"/>
+    <generator uri="https://www.getzola.org/">Zola</generator>
+    <updated>2022-05-06T00:00:00+00:00</updated>
+    <id>https://www.beersonthewall.com/blog/atom.xml</id>
+    <entry xml:lang="en">
+        <title>Resources for Learning OS Dev</title>
+        <published>2022-05-06T00:00:00+00:00</published>
+        <updated>2022-05-06T00:00:00+00:00</updated>
+        <author>
+          <name>Unknown</name>
+        </author>
+        <link rel="alternate" href="https://www.beersonthewall.com/blog/learn-os-dev-resources/" type="text/html"/>
+        <id>https://www.beersonthewall.com/blog/learn-os-dev-resources/</id>
+        
+        <content type="html">&lt;p&gt;Recently I&#x27;ve been learning &lt;a href=&quot;https:&#x2F;&#x2F;github.com&#x2F;beersonthewall&#x2F;heart_os&quot;&gt;os dev&lt;&#x2F;a&gt; and there&#x27;s a surprising amount of freely available resources for getting started
+with little to no direct experience (with OS dev, you need to know how to program already). Below is a list of the resources I&#x27;ve found inredibly helpful.&lt;&#x2F;p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;https:&#x2F;&#x2F;wiki.osdev.org&#x2F;Main_Page&quot;&gt;OS dev wiki&lt;&#x2F;a&gt;&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;a href=&quot;https:&#x2F;&#x2F;os.phil-opp.com&#x2F;&quot;&gt;Writing an OS in Rust&lt;&#x2F;a&gt; (and the &lt;a href=&quot;https:&#x2F;&#x2F;os.phil-opp.com&#x2F;edition-1&#x2F;&quot;&gt;first edition&lt;&#x2F;a&gt;)&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;a href=&quot;https:&#x2F;&#x2F;gitlab.redox-os.org&#x2F;redox-os&#x2F;redox&quot;&gt;Redox OS&lt;&#x2F;a&gt;&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;a href=&quot;https:&#x2F;&#x2F;serenityos.org&#x2F;&quot;&gt;Serenity OS&lt;&#x2F;a&gt;&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;a href=&quot;https:&#x2F;&#x2F;pages.cs.wisc.edu&#x2F;~remzi&#x2F;OSTEP&#x2F;&quot;&gt;Operating Systems: Three Easy Pieces&lt;&#x2F;a&gt;&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+</content>
+        
+    </entry>
+    <entry xml:lang="en">
+        <title>Kernel Debug Log</title>
+        <published>2022-02-28T00:00:00+00:00</published>
+        <updated>2022-02-28T00:00:00+00:00</updated>
+        <author>
+          <name>Unknown</name>
+        </author>
+        <link rel="alternate" href="https://www.beersonthewall.com/blog/kernel-debug-log/" type="text/html"/>
+        <id>https://www.beersonthewall.com/blog/kernel-debug-log/</id>
+        
+        <content type="html">&lt;p&gt;Debug logs:&lt;&#x2F;p&gt;
+&lt;p&gt;What follows is more-or-less stream of conciousness notes written while I was debugging my kernel code. I&#x27;ve 
+found that writing my thought process down makes it easier to logically work through a problem. Additionally it&#x27;s nice
+to document how I&#x27;ve solved problems.&lt;&#x2F;p&gt;
+&lt;p&gt;The problem statement:&lt;&#x2F;p&gt;
+&lt;p&gt;I&#x27;m currently trying to implement recursive page tables in my &lt;a href=&quot;https:&#x2F;&#x2F;github.com&#x2F;beersonthewall&#x2F;heart_os&quot;&gt;x86_64 kernel project&lt;&#x2F;a&gt;.
+I&#x27;ve just gotten the map() function for the page mapper to stop faulting when mapping a 
+test page, now we&#x27;re trying to make use of the newly mapped page:&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;rust&quot; style=&quot;background-color:#212733;color:#ccc9c2;&quot; class=&quot;language-rust &quot;&gt;&lt;code class=&quot;language-rust&quot; data-lang=&quot;rust&quot;&gt;&lt;span style=&quot;color:#ffa759;&quot;&gt;pub fn &lt;&#x2F;span&gt;&lt;span style=&quot;color:#ffd580;&quot;&gt;init&lt;&#x2F;span&gt;&lt;span&gt;(&lt;&#x2F;span&gt;&lt;span style=&quot;color:#ffcc66;&quot;&gt;_multiboot_addr&lt;&#x2F;span&gt;&lt;span style=&quot;color:#ccc9c2cc;&quot;&gt;: &lt;&#x2F;span&gt;&lt;span style=&quot;color:#ffa759;&quot;&gt;usize&lt;&#x2F;span&gt;&lt;span&gt;) {
+&lt;&#x2F;span&gt;&lt;span&gt;    &lt;&#x2F;span&gt;&lt;span style=&quot;color:#ffa759;&quot;&gt;let mut&lt;&#x2F;span&gt;&lt;span&gt; frame_allocator &lt;&#x2F;span&gt;&lt;span style=&quot;color:#f29e74;&quot;&gt;= &lt;&#x2F;span&gt;&lt;span&gt;FrameAllocator&lt;&#x2F;span&gt;&lt;span style=&quot;color:#f29e74;&quot;&gt;::&lt;&#x2F;span&gt;&lt;span&gt;new(PhysicalAddress&lt;&#x2F;span&gt;&lt;span style=&quot;color:#f29e74;&quot;&gt;::&lt;&#x2F;span&gt;&lt;span&gt;new(&lt;&#x2F;span&gt;&lt;span style=&quot;color:#ffcc66;&quot;&gt;10_000 &lt;&#x2F;span&gt;&lt;span style=&quot;color:#f29e74;&quot;&gt;* &lt;&#x2F;span&gt;&lt;span style=&quot;color:#ffcc66;&quot;&gt;PAGE_SIZE&lt;&#x2F;span&gt;&lt;span&gt;))&lt;&#x2F;span&gt;&lt;span style=&quot;color:#ccc9c2cc;&quot;&gt;;
+&lt;&#x2F;span&gt;&lt;span&gt;
+&lt;&#x2F;span&gt;&lt;span&gt;    &lt;&#x2F;span&gt;&lt;span style=&quot;color:#ffa759;&quot;&gt;let mut&lt;&#x2F;span&gt;&lt;span&gt; page_mapper &lt;&#x2F;span&gt;&lt;span style=&quot;color:#f29e74;&quot;&gt;= &lt;&#x2F;span&gt;&lt;span&gt;PageMapper&lt;&#x2F;span&gt;&lt;span style=&quot;color:#f29e74;&quot;&gt;::&lt;&#x2F;span&gt;&lt;span&gt;init_kernel_table()&lt;&#x2F;span&gt;&lt;span style=&quot;color:#ccc9c2cc;&quot;&gt;;
+&lt;&#x2F;span&gt;&lt;span&gt;
+&lt;&#x2F;span&gt;&lt;span&gt;    &lt;&#x2F;span&gt;&lt;span style=&quot;color:#ffa759;&quot;&gt;let&lt;&#x2F;span&gt;&lt;span&gt; test_frame &lt;&#x2F;span&gt;&lt;span style=&quot;color:#f29e74;&quot;&gt;=&lt;&#x2F;span&gt;&lt;span&gt; Frame {
+&lt;&#x2F;span&gt;&lt;span&gt;        frame_number&lt;&#x2F;span&gt;&lt;span style=&quot;color:#ccc9c2cc;&quot;&gt;: &lt;&#x2F;span&gt;&lt;span style=&quot;color:#ffcc66;&quot;&gt;0x55_55_BB_00_BB_BB_BB_BB &lt;&#x2F;span&gt;&lt;span style=&quot;color:#f29e74;&quot;&gt;&#x2F; &lt;&#x2F;span&gt;&lt;span style=&quot;color:#ffcc66;&quot;&gt;PAGE_SIZE&lt;&#x2F;span&gt;&lt;span style=&quot;color:#ccc9c2cc;&quot;&gt;,
+&lt;&#x2F;span&gt;&lt;span&gt;    }&lt;&#x2F;span&gt;&lt;span style=&quot;color:#ccc9c2cc;&quot;&gt;;
+&lt;&#x2F;span&gt;&lt;span&gt;    &lt;&#x2F;span&gt;&lt;span style=&quot;color:#ffa759;&quot;&gt;let&lt;&#x2F;span&gt;&lt;span&gt; test_page &lt;&#x2F;span&gt;&lt;span style=&quot;color:#f29e74;&quot;&gt;= &lt;&#x2F;span&gt;&lt;span&gt;Page&lt;&#x2F;span&gt;&lt;span style=&quot;color:#f29e74;&quot;&gt;::&lt;&#x2F;span&gt;&lt;span&gt;from_virtual_address(VirtualAddress&lt;&#x2F;span&gt;&lt;span style=&quot;color:#f29e74;&quot;&gt;::&lt;&#x2F;span&gt;&lt;span&gt;new(&lt;&#x2F;span&gt;&lt;span style=&quot;color:#ffcc66;&quot;&gt;0x0000_1FFF_0000_0000&lt;&#x2F;span&gt;&lt;span&gt;))&lt;&#x2F;span&gt;&lt;span style=&quot;color:#ccc9c2cc;&quot;&gt;;
+&lt;&#x2F;span&gt;&lt;span&gt;
+&lt;&#x2F;span&gt;&lt;span&gt;    page_mapper&lt;&#x2F;span&gt;&lt;span style=&quot;color:#f29e74;&quot;&gt;.&lt;&#x2F;span&gt;&lt;span style=&quot;color:#f28779;&quot;&gt;map&lt;&#x2F;span&gt;&lt;span&gt;(test_page&lt;&#x2F;span&gt;&lt;span style=&quot;color:#ccc9c2cc;&quot;&gt;,&lt;&#x2F;span&gt;&lt;span&gt; test_frame&lt;&#x2F;span&gt;&lt;span style=&quot;color:#ccc9c2cc;&quot;&gt;, &lt;&#x2F;span&gt;&lt;span style=&quot;color:#f29e74;&quot;&gt;&amp;amp;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#ffa759;&quot;&gt;mut&lt;&#x2F;span&gt;&lt;span&gt; frame_allocator)&lt;&#x2F;span&gt;&lt;span style=&quot;color:#ccc9c2cc;&quot;&gt;;
+&lt;&#x2F;span&gt;&lt;span&gt;    &lt;&#x2F;span&gt;&lt;span style=&quot;color:#f28779;&quot;&gt;log!&lt;&#x2F;span&gt;&lt;span&gt;(&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bae67e;&quot;&gt;&amp;quot;Success!&amp;quot;&lt;&#x2F;span&gt;&lt;span&gt;)&lt;&#x2F;span&gt;&lt;span style=&quot;color:#ccc9c2cc;&quot;&gt;;
+&lt;&#x2F;span&gt;&lt;span&gt;
+&lt;&#x2F;span&gt;&lt;span&gt;    &lt;&#x2F;span&gt;&lt;span style=&quot;color:#ffa759;&quot;&gt;let&lt;&#x2F;span&gt;&lt;span&gt; test_value&lt;&#x2F;span&gt;&lt;span style=&quot;color:#ccc9c2cc;&quot;&gt;: &lt;&#x2F;span&gt;&lt;span style=&quot;color:#f29e74;&quot;&gt;&amp;amp;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#ffa759;&quot;&gt;mut u64 &lt;&#x2F;span&gt;&lt;span style=&quot;color:#f29e74;&quot;&gt;= &lt;&#x2F;span&gt;&lt;span style=&quot;color:#ffa759;&quot;&gt;unsafe &lt;&#x2F;span&gt;&lt;span&gt;{ 
+&lt;&#x2F;span&gt;&lt;span&gt;		&lt;&#x2F;span&gt;&lt;span style=&quot;color:#f29e74;&quot;&gt;&amp;amp;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#ffa759;&quot;&gt;mut &lt;&#x2F;span&gt;&lt;span style=&quot;color:#f29e74;&quot;&gt;*&lt;&#x2F;span&gt;&lt;span&gt;(test_page&lt;&#x2F;span&gt;&lt;span style=&quot;color:#f29e74;&quot;&gt;.&lt;&#x2F;span&gt;&lt;span style=&quot;color:#f28779;&quot;&gt;virtual_address&lt;&#x2F;span&gt;&lt;span&gt;()&lt;&#x2F;span&gt;&lt;span style=&quot;color:#f29e74;&quot;&gt;.&lt;&#x2F;span&gt;&lt;span style=&quot;color:#ffcc66;&quot;&gt;0 &lt;&#x2F;span&gt;&lt;span style=&quot;color:#f29e74;&quot;&gt;as &lt;&#x2F;span&gt;&lt;span style=&quot;color:#ffa759;&quot;&gt;*mut u64&lt;&#x2F;span&gt;&lt;span&gt;) 
+&lt;&#x2F;span&gt;&lt;span&gt;	}&lt;&#x2F;span&gt;&lt;span style=&quot;color:#ccc9c2cc;&quot;&gt;;
+&lt;&#x2F;span&gt;&lt;span&gt;    &lt;&#x2F;span&gt;&lt;span style=&quot;color:#f28779;&quot;&gt;log!&lt;&#x2F;span&gt;&lt;span&gt;(&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bae67e;&quot;&gt;&amp;quot;test_value before: {test_value}&amp;quot;&lt;&#x2F;span&gt;&lt;span&gt;)&lt;&#x2F;span&gt;&lt;span style=&quot;color:#ccc9c2cc;&quot;&gt;; &lt;&#x2F;span&gt;&lt;span style=&quot;font-style:italic;color:#5c6773;&quot;&gt;&#x2F;&#x2F; &amp;lt;--- PROBLEMS BEGIN HERE
+&lt;&#x2F;span&gt;&lt;span&gt;    &lt;&#x2F;span&gt;&lt;span style=&quot;color:#f29e74;&quot;&gt;*&lt;&#x2F;span&gt;&lt;span&gt;test_value &lt;&#x2F;span&gt;&lt;span style=&quot;color:#f29e74;&quot;&gt;= &lt;&#x2F;span&gt;&lt;span style=&quot;color:#ffcc66;&quot;&gt;100&lt;&#x2F;span&gt;&lt;span style=&quot;color:#ccc9c2cc;&quot;&gt;;
+&lt;&#x2F;span&gt;&lt;span&gt;    &lt;&#x2F;span&gt;&lt;span style=&quot;color:#f28779;&quot;&gt;log!&lt;&#x2F;span&gt;&lt;span&gt;(&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bae67e;&quot;&gt;&amp;quot;test_value after: {test_value}&amp;quot;&lt;&#x2F;span&gt;&lt;span&gt;)&lt;&#x2F;span&gt;&lt;span style=&quot;color:#ccc9c2cc;&quot;&gt;;
+&lt;&#x2F;span&gt;&lt;span&gt;
+&lt;&#x2F;span&gt;&lt;span&gt;    &lt;&#x2F;span&gt;&lt;span style=&quot;color:#f28779;&quot;&gt;log!&lt;&#x2F;span&gt;&lt;span&gt;(&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bae67e;&quot;&gt;&amp;quot;unmapping page&amp;quot;&lt;&#x2F;span&gt;&lt;span&gt;)&lt;&#x2F;span&gt;&lt;span style=&quot;color:#ccc9c2cc;&quot;&gt;;
+&lt;&#x2F;span&gt;&lt;span&gt;    page_mapper&lt;&#x2F;span&gt;&lt;span style=&quot;color:#f29e74;&quot;&gt;.&lt;&#x2F;span&gt;&lt;span style=&quot;color:#f28779;&quot;&gt;unmap&lt;&#x2F;span&gt;&lt;span&gt;(test_page&lt;&#x2F;span&gt;&lt;span style=&quot;color:#ccc9c2cc;&quot;&gt;,&lt;&#x2F;span&gt;&lt;span&gt; test_frame&lt;&#x2F;span&gt;&lt;span style=&quot;color:#ccc9c2cc;&quot;&gt;, &lt;&#x2F;span&gt;&lt;span style=&quot;color:#f29e74;&quot;&gt;&amp;amp;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#ffa759;&quot;&gt;mut&lt;&#x2F;span&gt;&lt;span&gt; frame_allocator)&lt;&#x2F;span&gt;&lt;span style=&quot;color:#ccc9c2cc;&quot;&gt;;
+&lt;&#x2F;span&gt;&lt;span&gt;}
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;When we try to access our new page we get the following error:&lt;&#x2F;p&gt;
+&lt;pre style=&quot;background-color:#212733;color:#ccc9c2;&quot;&gt;&lt;code&gt;&lt;span&gt;[kernel] Hello world! :)
+&lt;&#x2F;span&gt;&lt;span&gt;[kernel] Multiboot flags 4026597203
+&lt;&#x2F;span&gt;&lt;span&gt;[kernel::memory::frame_alloc] start: 0x2710000
+&lt;&#x2F;span&gt;&lt;span&gt;[kernel::memory::page_mapper] writing pml4 entry
+&lt;&#x2F;span&gt;&lt;span&gt;[kernel::memory::page_mapper] new recursive page: ff7fbfc3f000
+&lt;&#x2F;span&gt;&lt;span&gt;[kernel::memory::frame_alloc] allocating frame: 2710000
+&lt;&#x2F;span&gt;&lt;span&gt;[kernel::memory::page_mapper] table vaddr: ffffff7fbfc3f000
+&lt;&#x2F;span&gt;&lt;span&gt;[kernel::memory::page_mapper] writing pdpt entry
+&lt;&#x2F;span&gt;&lt;span&gt;[kernel::memory::page_mapper] new recursive page: ff7f87ffc000
+&lt;&#x2F;span&gt;&lt;span&gt;[kernel::memory::frame_alloc] allocating frame: 2711000
+&lt;&#x2F;span&gt;&lt;span&gt;[kernel::memory::page_mapper] table vaddr: ffffff7f87ffc000
+&lt;&#x2F;span&gt;&lt;span&gt;[kernel::memory::page_mapper] writing pd entry
+&lt;&#x2F;span&gt;&lt;span&gt;[kernel::memory::page_mapper] new recursive page: ff0fff800000
+&lt;&#x2F;span&gt;&lt;span&gt;[kernel::memory::frame_alloc] allocating frame: 2712000
+&lt;&#x2F;span&gt;&lt;span&gt;[kernel::memory::page_mapper] table vaddr: ffffff0fff800000
+&lt;&#x2F;span&gt;&lt;span&gt;[kernel::memory::page_mapper] writing pt entry
+&lt;&#x2F;span&gt;&lt;span&gt;[kernel::memory] Success!
+&lt;&#x2F;span&gt;&lt;span&gt;[kernel::memory] test_value before: check_exception old: 0xffffffff new 0xe
+&lt;&#x2F;span&gt;&lt;span&gt;     0: v=0e e=0009 i=0 cpl=0 IP=0008:ffffffff801023c7 pc=ffffffff801023c7 SP=0010:ffffffff8010be00 CR2=00001fff00000000
+&lt;&#x2F;span&gt;&lt;span&gt;RAX=0000000000000000 RBX=ffffffff8010c120 RCX=ffffffff8010c180 RDX=00000000000000e9
+&lt;&#x2F;span&gt;&lt;span&gt;.
+&lt;&#x2F;span&gt;&lt;span&gt;.
+&lt;&#x2F;span&gt;&lt;span&gt;.
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;v=0e is vector 14, which according to the AMD64 system programming manual is a page
+fault exception. The error code e=0009 has bits zero and three set which are page-protection
+violation and reserved field violation respectively. We can also note that control register 2 (CR2)
+contains the virtual address for test_page.&lt;&#x2F;p&gt;
+&lt;p&gt;So the first guess is that we&#x27;re not setting one of the table entries correctly when we map. We do have
+page size extensions turned on (it&#x27;s used to map our kernel pages in kernel&#x2F;arch&#x2F;amd64&#x2F;start.S). However
+the page mapper only supports 4KiB pages for now and we should be able to use both 2MiB and 4KiB pages,
+as long as the page size bits are setup correctly. We&#x27;ll also want to make sure we set the 
+User&#x2F;Supervisor bit correctly (since that&#x27;s the other error incidated in the fault).&lt;&#x2F;p&gt;
+&lt;p&gt;Running qemu with &lt;code&gt;-s -S&lt;&#x2F;code&gt; will add a gdb stub and pause before starting. Which gives me time to 
+open gdb and run &lt;code&gt;target remote localhost:1234&lt;&#x2F;code&gt; so we can get a debugging session going. 
+Stepping through to just after map() returns, we can use the qemu monitoring
+(ctrl-alt-2 in the qemu window) to get tlb information:&lt;&#x2F;p&gt;
+&lt;p&gt;&lt;img src=&quot;&#x2F;images&#x2F;kernel-debug-log-01-tlb.png&quot; alt=&quot;qemu info tlb output&quot; &#x2F;&gt;&lt;&#x2F;p&gt;
+&lt;p&gt;We can also check general memory information:&lt;&#x2F;p&gt;
+&lt;p&gt;&lt;img src=&quot;&#x2F;images&#x2F;kernel-debug-log-01-mem.png&quot; alt=&quot;qemu info mem output&quot; &#x2F;&gt;&lt;&#x2F;p&gt;
+&lt;p&gt;The error output also dumps control registers. &lt;&#x2F;p&gt;
+&lt;p&gt;&lt;code&gt;CR0=80010011 CR2=00001fff00000000 CR3=0000000000106000 CR4=000000b0&lt;&#x2F;code&gt;&lt;&#x2F;p&gt;
+&lt;p&gt;CR4 contains &lt;code&gt;0x000000b0&lt;&#x2F;code&gt;. 0xb0 sets bits 4, 5, and 7 for page size extension, 
+physical address extension, and page global enable 
+respectively.&lt;&#x2F;p&gt;
+&lt;p&gt;We can also add some debug code to dump the state of relevant tables after we call map():&lt;&#x2F;p&gt;
+&lt;pre style=&quot;background-color:#212733;color:#ccc9c2;&quot;&gt;&lt;code&gt;&lt;span&gt;[kernel::memory::page_mapper] pml4
+&lt;&#x2F;span&gt;&lt;span&gt;[kernel::memory::page_mapper] entry 0: 107023
+&lt;&#x2F;span&gt;&lt;span&gt;[kernel::memory::page_mapper] entry 63: 2710063
+&lt;&#x2F;span&gt;&lt;span&gt;[kernel::memory::page_mapper] entry 510: 106063
+&lt;&#x2F;span&gt;&lt;span&gt;[kernel::memory::page_mapper] entry 511: 108023
+&lt;&#x2F;span&gt;&lt;span&gt;[kernel::memory::page_mapper] pdpt
+&lt;&#x2F;span&gt;&lt;span&gt;[kernel::memory::page_mapper] entry 508: 2711063
+&lt;&#x2F;span&gt;&lt;span&gt;[kernel::memory::page_mapper] pd
+&lt;&#x2F;span&gt;&lt;span&gt;[kernel::memory::page_mapper] entry 0: 2712063
+&lt;&#x2F;span&gt;&lt;span&gt;[kernel::memory::page_mapper] pt
+&lt;&#x2F;span&gt;&lt;span&gt;[kernel::memory::page_mapper] entry 0: 5555bb00bbbbb003
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;Looking at the physical address, a few things might be wrong here:&lt;&#x2F;p&gt;
+&lt;p&gt;First: it&#x27;s got more that 52 bits of data (because we have PSE and PAE set as noted before),
+so it&#x27;s not really pointing where we think it is.&lt;&#x2F;p&gt;
+&lt;p&gt;Second: that&#x27;s probably way larger than the amount of &#x27;physical&#x27; memory qemu uses by default 
+which is 128 MiB. Ooops.&lt;&#x2F;p&gt;
+&lt;p&gt;Let&#x27;s change that to a more reasonable value: 0x4e20000 that fixes both problems.&lt;&#x2F;p&gt;
+&lt;p&gt;Re-running shows we can access our newly mapped page, but also gives an error during unmap():&lt;&#x2F;p&gt;
+&lt;pre style=&quot;background-color:#212733;color:#ccc9c2;&quot;&gt;&lt;code&gt;&lt;span&gt;[kernel] Hello world! :)
+&lt;&#x2F;span&gt;&lt;span&gt;[kernel] Multiboot flags 4026597203
+&lt;&#x2F;span&gt;&lt;span&gt;[kernel::memory::frame_alloc] start: 0x2710000
+&lt;&#x2F;span&gt;&lt;span&gt;[kernel::memory::page_mapper] writing pml4 entry
+&lt;&#x2F;span&gt;&lt;span&gt;[kernel::memory::page_mapper] new recursive page: ff7fbfc3f000
+&lt;&#x2F;span&gt;&lt;span&gt;[kernel::memory::frame_alloc] allocating frame: 2710000
+&lt;&#x2F;span&gt;&lt;span&gt;[kernel::memory::page_mapper] table vaddr: ffffff7fbfc3f000
+&lt;&#x2F;span&gt;&lt;span&gt;[kernel::memory::page_mapper] writing pdpt entry
+&lt;&#x2F;span&gt;&lt;span&gt;[kernel::memory::page_mapper] new recursive page: ff7f87ffc000
+&lt;&#x2F;span&gt;&lt;span&gt;[kernel::memory::frame_alloc] allocating frame: 2711000
+&lt;&#x2F;span&gt;&lt;span&gt;[kernel::memory::page_mapper] table vaddr: ffffff7f87ffc000
+&lt;&#x2F;span&gt;&lt;span&gt;[kernel::memory::page_mapper] writing pd entry
+&lt;&#x2F;span&gt;&lt;span&gt;[kernel::memory::page_mapper] new recursive page: ff0fff800000
+&lt;&#x2F;span&gt;&lt;span&gt;[kernel::memory::frame_alloc] allocating frame: 2712000
+&lt;&#x2F;span&gt;&lt;span&gt;[kernel::memory::page_mapper] table vaddr: ffffff0fff800000
+&lt;&#x2F;span&gt;&lt;span&gt;[kernel::memory::page_mapper] writing pt entry
+&lt;&#x2F;span&gt;&lt;span&gt;[kernel::memory::page_mapper] pml4
+&lt;&#x2F;span&gt;&lt;span&gt;[kernel::memory::page_mapper] entry 0: 107023
+&lt;&#x2F;span&gt;&lt;span&gt;[kernel::memory::page_mapper] entry 63: 2710063
+&lt;&#x2F;span&gt;&lt;span&gt;[kernel::memory::page_mapper] entry 510: 106063
+&lt;&#x2F;span&gt;&lt;span&gt;[kernel::memory::page_mapper] entry 511: 108023
+&lt;&#x2F;span&gt;&lt;span&gt;[kernel::memory::page_mapper] pdpt
+&lt;&#x2F;span&gt;&lt;span&gt;[kernel::memory::page_mapper] entry 508: 2711063
+&lt;&#x2F;span&gt;&lt;span&gt;[kernel::memory::page_mapper] pd
+&lt;&#x2F;span&gt;&lt;span&gt;[kernel::memory::page_mapper] entry 0: 2712063
+&lt;&#x2F;span&gt;&lt;span&gt;[kernel::memory::page_mapper] pt
+&lt;&#x2F;span&gt;&lt;span&gt;[kernel::memory::page_mapper] entry 0: 4e20003
+&lt;&#x2F;span&gt;&lt;span&gt;[kernel::memory] Success!
+&lt;&#x2F;span&gt;&lt;span&gt;[kernel::memory] test_value before: 0
+&lt;&#x2F;span&gt;&lt;span&gt;[kernel::memory] test_value after: 100
+&lt;&#x2F;span&gt;&lt;span&gt;[kernel::memory] unmapping page
+&lt;&#x2F;span&gt;&lt;span&gt;[kernel::memory::page_mapper] new recursive page: ff7fbfc3f000
+&lt;&#x2F;span&gt;&lt;span&gt;[kernel::memory::page_mapper] table vaddr: ffffff7fbfc3f000
+&lt;&#x2F;span&gt;&lt;span&gt;[kernel::memory::page_mapper] new recursive page: ff7f87ffc000
+&lt;&#x2F;span&gt;&lt;span&gt;[kernel::memory::page_mapper] table vaddr: ffffff7f87ffc000
+&lt;&#x2F;span&gt;&lt;span&gt;[kernel::memory::page_mapper] new recursive page: ff0fff800000
+&lt;&#x2F;span&gt;&lt;span&gt;[kernel::memory::page_mapper] table vaddr: ffffff0fff800000
+&lt;&#x2F;span&gt;&lt;span&gt;[kernel::unwind] PANIC file=&amp;#39;memory&#x2F;page_mapper.rs&amp;#39;, 
+&lt;&#x2F;span&gt;&lt;span&gt;	line=134 :: assertion failed: frame == pt_entry.frame()
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;but that&#x27;s a problem for another debug log!&lt;&#x2F;p&gt;
+</content>
+        
+    </entry>
+</feed>
