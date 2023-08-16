@@ -4,8 +4,32 @@
     <link href="https://www.beersonthewall.com/blog/atom.xml" rel="self" type="application/atom+xml"/>
     <link href="https://www.beersonthewall.com/blog/"/>
     <generator uri="https://www.getzola.org/">Zola</generator>
-    <updated>2023-08-14T00:00:00+00:00</updated>
+    <updated>2023-08-16T00:00:00+00:00</updated>
     <id>https://www.beersonthewall.com/blog/atom.xml</id>
+    <entry xml:lang="en">
+        <title>Chip 8 Interpreter</title>
+        <published>2023-08-16T00:00:00+00:00</published>
+        <updated>2023-08-16T00:00:00+00:00</updated>
+        <author>
+          <name>Unknown</name>
+        </author>
+        <link rel="alternate" href="https://www.beersonthewall.com/blog/chip8-interpreter/" type="text/html"/>
+        <id>https://www.beersonthewall.com/blog/chip8-interpreter/</id>
+        
+        <content type="html">&lt;p&gt;Hello, Chip8!&lt;&#x2F;p&gt;
+&lt;p&gt;&lt;a href=&quot;https:&#x2F;&#x2F;en.wikipedia.org&#x2F;wiki&#x2F;CHIP-8&quot;&gt;CHIP-8&lt;&#x2F;a&gt; is an interpreted programming language and a 
+common first project for stepping into the world of emulators.&lt;&#x2F;p&gt;
+&lt;p&gt;CHIP-8 is fairly simple. It has a flat memory address space (originally 4K), 16 8-bit data
+registers, a stack for storing return addresses, two timers (delay &amp;amp; audio), 16 input
+keys, and a 64x32 pixel screen with monochrome color.&lt;&#x2F;p&gt;
+&lt;p&gt;With only 35 opcodes, CHIP-8 is quick to implement and gives tangile results quickly. You can see
+the results in the GIF below showing the BLINKY ROM:&lt;&#x2F;p&gt;
+&lt;img class=&quot;markdownimg&quot; src=&quot;.&#x2F;blinky.gif&quot; alt=&quot;GIF of animations eerily similar to pacman&quot; &#x2F;&gt;
+&lt;p&gt;I&#x27;m sure there&#x27;s a few bugs still loitering around, but for only spending a handful of hours across 
+a few days I&#x27;m pretty happy with it. The project can be found at &lt;a href=&quot;https:&#x2F;&#x2F;www.beersonthewall.com&#x2F;chip8&quot;&gt;www.beersonthewall.com&#x2F;chip8&lt;&#x2F;a&gt;.&lt;&#x2F;p&gt;
+</content>
+        
+    </entry>
     <entry xml:lang="en">
         <title>TIL: FFmpeg is Pretty Neat</title>
         <published>2023-08-14T00:00:00+00:00</published>
